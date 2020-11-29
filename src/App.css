@@ -18,3 +18,12 @@
   height: 45px;
   width: 45px;
 }
+.app__signup {
+  display: flex;
+  flex-direction: column;
+}
+
+.app__signupImageLogo {
+  width: 100%;
+  object-fit: cover;
+}
