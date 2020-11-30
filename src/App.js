@@ -47,6 +47,7 @@ function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [user, setUser] = useState(null);
+  const [openSignIn, setOpenSignIn]= useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -60,6 +61,7 @@ function App() {
             displayName:username
           })
         }
+        setUser(authUser)
       } else {
         // User has logged OUT
         setUser(null);
@@ -81,21 +83,36 @@ function App() {
 
   const signup = (event) => {
     event.preventDefault();
-    console.log('Signup data >>> ',event );
     auth.createUserWithEmailAndPassword(email,password)
     .then((authUser) => { 
+      setUser(authUser);
       return authUser.user.updateProfile({
         displayName: username
       })
     })
     .catch((error) => {
+      setUser(null);
       alert(error.message)
     })
+
+    setOpen(false);
   };
+
+  const signIn = (event) => {
+    event.preventDefault();
+    auth.signInWithEmailAndPassword(email,password)
+    .then((user) => { console.log('User logged In', user) })
+    .catch((error) => alert(error.message))
+    setOpenSignIn(false);
+  }
 
   return (
     <div className="App">
+        {/* Cation Input */}
+        {/* File Pickup */}
+        {/* Post Button */}
         
+        {/* Sign up Modal */}
         <Modal
           open={open}
           onClose={() => setOpen(false)}>
@@ -135,6 +152,40 @@ function App() {
           </div>
         </Modal>
 
+        {/* Login Modal */}
+
+        <Modal
+          open={openSignIn}
+          onClose={() => setOpenSignIn(false)}>
+          <div  style={modalStyle} className={classes.paper}>
+            <form className='app__signup'>
+            <center>
+            <img 
+              className="app__signupImageLogo"
+              alt="Instagram_logo"
+              src="https://play-lh.googleusercontent.com/9ASiwrVdio0I2i2Sd1UzRczyL81piJoKfKKBoC8PUm2q6565NMQwUJCuNGwH-enhm00"
+            />        
+            </center>
+            
+            <Input
+              placeholder="Email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}  
+            />
+
+            <Input
+              placeholder="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}  
+            />
+
+            <Button type="submit" onClick={signIn}> Login </Button>
+            </form>
+          </div>
+        </Modal>
+
     <div className="app__header">
       <img 
         className="app__headerImage"
@@ -142,7 +193,15 @@ function App() {
         src="https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-instagram-new-circle-512.png"
       />
       </div>
-      <Button onClick={() => setOpen(true)} > Signup </Button>
+      { user ? (
+        <Button onClick={() => auth.signOut()} > Logout </Button>
+       ) : ( 
+         <div className="app__loginContainer">
+           <Button onClick={() => setOpenSignIn(true)} > Login </Button>
+           <Button onClick={() => setOpen(true)} > Signup </Button>
+         </div>
+       ) 
+      }
 
       {
         posts.map(({ id, post}) => (<Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl} />))
