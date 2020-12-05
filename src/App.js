@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-
 import './App.css';
-import Post from './Post';
+import React, { useState, useEffect } from "react";
 import { db, auth } from './firebase';
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Input } from "@material-ui/core";
 
+import Post from './Post';
+import ImageUpload from './ImageUpload';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -108,9 +108,8 @@ function App() {
 
   return (
     <div className="App">
-        {/* Cation Input */}
-        {/* File Pickup */}
-        {/* Post Button */}
+        
+        <ImageUpload/>
         
         {/* Sign up Modal */}
         <Modal
