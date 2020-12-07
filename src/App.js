@@ -73,7 +73,7 @@ function App() {
   }, [user,username])
 
   useEffect(() => {
-    db.collection('post').onSnapshot(snapshot => {
+    db.collection('post').orderBy('timestamp','desc').onSnapshot(snapshot => {
       setPosts(snapshot.docs.map(doc => ({
         id:doc.id,
         post: doc.data(),
@@ -109,9 +109,9 @@ function App() {
   return (
     <div className="App">
 
-      <ImageUpload username={user.displayName} />
-         {/* { user?.displayName ? (
-         ) : ( <h4> Login to upload </h4> )}  */}
+         { user ? (
+          <ImageUpload username={user.displayName} />
+         ) : ( <h4> Login to upload </h4> )} 
         
         {/* Sign up Modal */}
         <Modal
