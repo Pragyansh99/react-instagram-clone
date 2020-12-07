@@ -108,8 +108,10 @@ function App() {
 
   return (
     <div className="App">
-        
-        <ImageUpload/>
+
+      <ImageUpload username={user.displayName} />
+         {/* { user?.displayName ? (
+         ) : ( <h4> Login to upload </h4> )}  */}
         
         {/* Sign up Modal */}
         <Modal
