@@ -1,3 +1,9 @@
+# REACT INSTAGRAM CLONE
+
+Hosting Date : 10 Dec 2020
+Hosting URL : https://react-instagram-clone-77677.web.app/
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

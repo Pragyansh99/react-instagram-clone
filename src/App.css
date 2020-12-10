@@ -8,10 +8,16 @@
 }
 
 .app__header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
   background-color: white;
   border-bottom: 1px solid lightgrey;
   object-fit: contain;
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .app__headerImage {

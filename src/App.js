@@ -107,12 +107,7 @@ function App() {
   }
 
   return (
-    <div className="App">
-
-         { user ? (
-          <ImageUpload username={user.displayName} />
-         ) : ( <h4> Login to upload </h4> )} 
-        
+    <div className="App">        
         {/* Sign up Modal */}
         <Modal
           open={open}
@@ -193,20 +188,30 @@ function App() {
         alt="noimage"
         src="https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-instagram-new-circle-512.png"
       />
-      </div>
-      { user ? (
-        <Button onClick={() => auth.signOut()} > Logout </Button>
-       ) : ( 
+
+      { user? ( <Button onClick={() => auth.signOut()} > Logout </Button> ) 
+            : ( 
          <div className="app__loginContainer">
            <Button onClick={() => setOpenSignIn(true)} > Login </Button>
            <Button onClick={() => setOpen(true)} > Signup </Button>
          </div>
        ) 
       }
-
-      {
-        posts.map(({ id, post}) => (<Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl} />))
+    </div>
+      
+      { posts.map(({ id, post}) => (<Post 
+      key={id} 
+      postId={id} 
+      username={post.username} 
+      caption={post.caption} 
+      imageUrl={post.imageUrl} 
+      user={user}
+      />))
       }
+
+      { user? ( <ImageUpload username={user.displayName} /> ) 
+            : ( <h4> Login to upload </h4> )
+      } 
 
     </div>
   );
