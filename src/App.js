@@ -198,7 +198,10 @@ function App() {
        ) 
       }
     </div>
-      
+      { user? ( <ImageUpload username={user.displayName} /> ) 
+            : ( <p className="welcome__message"> Please login to upload your pictures! </p> )
+      } 
+
       { posts.map(({ id, post}) => (<Post 
       key={id} 
       postId={id} 
@@ -208,11 +211,6 @@ function App() {
       user={user}
       />))
       }
-
-      { user? ( <ImageUpload username={user.displayName} /> ) 
-            : ( <h4> Login to upload </h4> )
-      } 
-
     </div>
   );
 }

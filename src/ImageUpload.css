@@ -4,11 +4,44 @@
     width: 60%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     background-color: white;
-    border-top: 1px solid grey;
 }
 .Imageupload__progress {
     width: 100%;
+}
+.Imageupload__yourstatus {
+    display: flex;
+    position: relative;
+}
+.Imageupload_caption {
+    flex: 1;
+    padding: 7px;
+    border: 2px solid #f6f6f6;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding-right: 35px;
+}
+.Imageupload__upload {
+    flex: 0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #4267B2;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.Imageupload__select {
+    position: absolute;
+    top: 0px;
+    right: 73px;
+    font-weight: bolder;
+    font-size: 24px; 
+    cursor: pointer;
+}
+
+.Imageupload__fileselect {
+
 }

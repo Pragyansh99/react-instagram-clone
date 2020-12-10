@@ -7,7 +7,7 @@ import './ImageUpload.css';
 function ImageUpload({username}) {
     const [caption , setCaption] = useState('');
     const [image, setImage] = useState(null);
-    const [progress, setProgress] = useState('');
+    const [progress, setProgress] = useState(0);
     const [url, setUrl] = useState('');
 
     const handleChange = (e) => {
@@ -53,16 +53,24 @@ function ImageUpload({username}) {
     };
     
     return(
-        <div class="imageUpload" >
-            <progress class="Imageupload__progress" value={progress} max="100" ></progress>
-            <input type="text" 
-            placeholder="Enter a caption....." 
+        <div className="imageUpload" >
+
+            <div className="Imageupload__yourstatus">
+            <input type="text"
+            className="Imageupload_caption" 
+            placeholder="What's on your mind ?" 
             onChange={event => setCaption(event.target.value)}
             value={caption} />
-            <input type="file" onChange={handleChange}/>
-            <Button class="Imageupload__button" onClick={handleUpload}>
-                Upload
-            </Button>
+            <label className="Imageupload__select" for="upload_file"> +
+                <input type="file" id="upload_file" hidden onChange={handleChange}/>
+            </label>
+            <button focusVisible className="Imageupload__upload" onClick={handleUpload}>
+                Post
+            </button>
+            </div>
+
+            { progress !== 0 ? (<progress className="Imageupload__progress" value={progress} max="100" ></progress>)
+                            : ('')}
         </div>
     )
 }

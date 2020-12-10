@@ -37,3 +37,7 @@
 .app__loginContainer {
   
 }
+
+.welcome__message {
+  text-align: center;
+}
